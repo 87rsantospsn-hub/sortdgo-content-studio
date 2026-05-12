@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SORTD GO Content Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <div class="brand-mark">SORTD GO</div>
+          <div class="brand-copy">Content Studio for tattoo art & social posts</div>
+        </div>
+        <div class="health-badge" id="healthBadge">Health</div>
+      </header>
+
+      <main class="workspace">
+        <section class="panel left-panel">
+          <div class="panel-card">
+            <h2>Studio Identity</h2>
+            <label>Studio name</label>
+            <input id="studioName" placeholder="Understairs Ink" value="Understairs Ink" />
+            <label>Instagram handle</label>
+            <input id="instagramHandle" placeholder="@understairsink" value="@understairsink" />
+          </div>
+
+          <div class="panel-card">
+            <h2>Theme search</h2>
+            <div class="theme-search-row">
+              <input id="themeSearch" placeholder="Describe the mood or topic" />
+              <button id="suggestThemeBtn" title="Suggest themes">⚡</button>
+            </div>
+            <div id="suggestionsList" class="suggestions-list"></div>
+          </div>
+
+          <div class="panel-card">
+            <h2>Seasonal + popular themes</h2>
+            <div id="seasonalChips" class="chip-grid"></div>
+            <div id="popularChips" class="chip-grid"></div>
+          </div>
+
+          <div class="panel-card selected-theme-card" id="selectedThemeCard" hidden>
+            <span>Selected theme</span>
+            <div class="selected-theme-pill">
+              <span id="selectedThemeText"></span>
+              <button id="clearThemeBtn">×</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <h2>Photo upload</h2>
+            <div class="upload-box" id="uploadBox">
+              <span>Drag & drop or click to upload</span>
+              <small>optional — without photo AI creates the art</small>
+              <input type="file" id="photoInput" accept="image/*" hidden />
+            </div>
+            <div id="photoPreview" class="photo-preview" hidden>
+              <img id="photoPreviewImg" alt="Uploaded photo preview" />
+              <button id="removePhotoBtn" class="small-button">Remove</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <h2>Format</h2>
+            <div class="card-grid" id="formatCards"></div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header-row">
+              <h2>Studio style</h2>
+              <label class="toggle-switch">
+                <input type="checkbox" id="useStyleToggle" checked />
+                <span class="slider"></span>
+                <span class="toggle-label">Use style</span>
+              </label>
+            </div>
+            <div class="chip-grid" id="styleChips"></div>
+          </div>
+
+          <div class="panel-card">
+            <h2>Tone</h2>
+            <div class="chip-grid" id="toneChips"></div>
+          </div>
+
+          <div class="panel-card">
+            <h2>Extra context</h2>
+            <textarea id="extraContext" rows="4" placeholder="Add details, CTA, or mood notes"></textarea>
+          </div>
+
+          <div class="panel-card">
+            <h2>OpenAI Key</h2>
+            <input id="openAiKey" type="password" placeholder="Enter OpenAI API key" />
+          </div>
+
+          <button id="generateBtn" class="primary-button">GENERATE CONTENT</button>
+        </section>
+
+        <section class="panel right-panel">
+          <div class="tabs">
+            <button class="tab-button active" data-tab="art">ART</button>
+            <button class="tab-button" data-tab="caption">CAPTION</button>
+            <button class="tab-button" data-tab="refine">REFINE</button>
+          </div>
+
+          <div class="tab-content active" id="tab-art">
+            <div class="art-frame" id="artFrame">
+              <div class="spinner-overlay" id="artSpinner" hidden>Loading…</div>
+              <img id="resultImage" alt="Generated artwork preview" />
+              <div class="empty-state" id="artEmpty">No art yet. Generate content to preview.</div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-caption">
+            <div class="caption-controls">
+              <button id="copyCaptionBtn" class="secondary-button">Copy</button>
+              <button id="regenerateCaptionBtn" class="secondary-button">Regenerate</button>
+            </div>
+            <pre class="caption-output" id="captionOutput">Your caption will appear here.</pre>
+          </div>
+
+          <div class="tab-content" id="tab-refine">
+            <div class="refine-preview">
+              <strong>Current art preview</strong>
+              <img id="refinePreviewImage" alt="Refine preview" />
+            </div>
+            <textarea id="refineInstruction" rows="4" placeholder="Example: Remove the number 3 from the corner"></textarea>
+            <button id="refineBtn" class="primary-button">REFINE ART</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="bottombar">
+        <button id="saveHistoryBtn" class="secondary-button">Save</button>
+        <button id="newVersionBtn" class="secondary-button">New Version</button>
+        <button id="downloadBtn" class="primary-button">Download Art</button>
+      </footer>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+  </body>
+</html>
