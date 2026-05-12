@@ -69,7 +69,7 @@ let currentImageBase64 = '';
 
 const historyKey = 'sortdgo_content_history';
 const settingsKey = 'sortdgo_content_settings';
-const API_BASE = window.API_BASE_URL || '';
+const API_BASE = window.API_BASE_URL || 'https://sortdgo-content-studio-production.up.railway.app';
 
 function setHealth(status) {
   healthBadge.textContent = status;
